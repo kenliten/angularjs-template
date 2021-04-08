@@ -9,9 +9,21 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const title = 'Development';
+const templateContent = `<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    ${title}
+  </title>
+</head>
+<body>
+</body>
+</html>`;
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/main.js',
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
@@ -67,18 +79,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title,
-            templateContent: `<!DOCTYPE html>
-<html lang="en" ng-app="app">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    ${title}
-  </title>
-</head>
-<body>
-</body>
-</html>`
+            template: './src/index.html',
+            // templateContent
         }),
         new CompressionPlugin({
             test: /\.js(\?.*)?$/i,

@@ -1,9 +1,10 @@
 import { AppModule } from './app/app.module';
+import './styles.scss';
 
 function initialize() {
-  const body = document.body;
   const appHolder = document.createElement('app-root');
-  body.appendChild(appHolder);
+  document.body.appendChild(appHolder);
+  return AppModule;
 }
 
 initialize();
