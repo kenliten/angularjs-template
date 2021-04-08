@@ -1,6 +1,11 @@
-import template from './app.html';
+import template from './app.component.html';
+import './app.component.scss';
 
-import { AppController } from './app.controller';
+class AppController {
+  constructor() {
+    this.name = 'App';
+  }
+}
 
 export const AppComponent = {
   template,

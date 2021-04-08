@@ -1,21 +1,7 @@
-import angular from 'angular';
-import ngRoute from 'angular-route';
-
-import { AppConfig } from './app.config';
+import * as angular from 'angular';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
-import './app.less';
-
-import { CommonModule } from './common/common.module';
-import { ComponentsModule } from './components/components.module';
 
 export const AppModule = angular
-  .module('app', [
-      ngRoute,
-      CommonModule,
-      ComponentsModule
-  ])
+  .module('app', [])
   .component('app', AppComponent)
-  .service('AppService', AppService)
-  .config(['$routeProvider', AppConfig])
   .name;
