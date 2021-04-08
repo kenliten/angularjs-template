@@ -8,8 +8,10 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
+const title = 'Development';
+
 module.exports = {
-    entry: './src/app.module.js',
+    entry: './src/index.js',
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
@@ -64,16 +66,27 @@ module.exports = {
             cleanStaleWebpackAssets: false 
         }),
         new HtmlWebpackPlugin({
-            title: 'Development'
+            title,
+            templateContent: `<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    ${title}
+  </title>
+</head>
+<body>
+</body>
+</html>`
         }),
         new CompressionPlugin({
             test: /\.js(\?.*)?$/i,
-            algorithm: "gzip",
         }),
         new CopyPlugin({
             patterns: [{
                 context: path.resolve(__dirname, 'dist'),
-                from: '../src/*.html',
+                from: '../src/*/**.html',
             }]
         }),
         new MiniCssExtractPlugin(),
